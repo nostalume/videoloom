@@ -1,0 +1,84 @@
+name: Recording catalog
+
+on:
+  pull_request:
+    paths:
+      - .github/workflows/catalog.yml
+      - INDEX.md
+      - sources/manifest.json
+      - sources/**/metadata.json
+      - sources/**/read.md
+      - tests/test_build_index.py
+      - tools/build_index.py
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/catalog.yml
+      - INDEX.md
+      - sources/manifest.json
+      - sources/**/metadata.json
+      - sources/**/read.md
+      - tests/test_build_index.py
+      - tools/build_index.py
+  workflow_dispatch:
+
+permissions: {}
+
+concurrency:
+  group: catalog-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  check:
+    name: Check catalog
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Set up Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: "3.13"
+      - name: Test catalog generator
+        run: python -m unittest tests.test_build_index
+      - name: Check generated catalog
+        run: python tools/build_index.py --check
+
+  update:
+    name: Update catalog
+    if: github.event_name != 'pull_request' && startsWith(github.ref, 'refs/heads/')
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions:
+      contents: write
+    steps:
+      - name: Check out branch
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: true
+      - name: Set up Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: "3.13"
+      - name: Test catalog generator
+        run: python -m unittest tests.test_build_index
+      - name: Generate catalog
+        run: python tools/build_index.py
+      - name: Commit catalog update
+        run: |
+          git add -- INDEX.md
+          if git diff --cached --quiet; then
+            echo "Catalog is current."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "docs: update recording index"
+          git push origin "HEAD:${GITHUB_REF}"

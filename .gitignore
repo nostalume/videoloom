@@ -1,0 +1,7 @@
+/.agents/
+/.cache/
+__pycache__/
+*.py[cod]
+/sources/**/audio.*
+/sources/**/video.*
+/sources/**/media.*

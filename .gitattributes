@@ -1,0 +1,9 @@
+/sources/** -text
+/.gitattributes text eol=lf
+/.gitignore text eol=lf
+/INDEX.md text eol=lf
+/README.md text eol=lf
+/*.toml text eol=lf
+*.py text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf

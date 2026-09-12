@@ -1,0 +1,287 @@
+{
+  "schema_version": "5",
+  "tool": "vctx",
+  "tool_version": "0.4.0",
+  "pack_id": "3c309ec3-7a14-4498-a020-a70ab79ad9f3",
+  "run": {
+    "id": "5f96f8c2-30e2-4485-a9ed-273a98b23a20",
+    "requested_target": "transcript",
+    "failures": []
+  },
+  "status": "ok",
+  "created_at": "2026-09-11T09:14:37.579963Z",
+  "updated_at": "2026-09-11T13:30:47.607061Z",
+  "sources": [
+    {
+      "id": "bilibili__BV1Tpbj6eEDZ",
+      "key": "bilibili-bv1tpbj6eedz",
+      "path": "bilibili-bv1tpbj6eedz",
+      "kind": "url",
+      "revision": {
+        "kind": "observed",
+        "value": "e64356cd97a85acb3154419578e6c6bb957730a0232bb73c8e0f36c498af8e7d"
+      },
+      "freshness": "observed-online",
+      "observed_at": "2026-09-11T13:26:49.648041Z",
+      "title": "G20背后的灰犀牛：全球失衡，正在走向下一场金融危机？",
+      "duration_seconds": 5736.0,
+      "status": "ok",
+      "artifacts": [
+        {
+          "kind": "metadata",
+          "path": "metadata.json",
+          "media_type": "application/json",
+          "bytes": 362,
+          "sha256": "82642f1fbc07d0c88903ce55419f4268de302446544c3bcca82b88c65933bc81"
+        },
+        {
+          "kind": "transcript",
+          "path": "transcript.json",
+          "media_type": "application/json",
+          "bytes": 271390,
+          "sha256": "c86fe68c3974d81e2bded241cebb5caa78ce4ec9b16c33424cb988367b588e32"
+        },
+        {
+          "kind": "chunks",
+          "path": "chunks.json",
+          "media_type": "application/json",
+          "bytes": 108088,
+          "sha256": "018afeeeae333a9e33f841c532a3e7a936ebd615b0779148b649ecc71582e465"
+        },
+        {
+          "kind": "context",
+          "path": "context.md",
+          "media_type": "text/markdown",
+          "bytes": 73043,
+          "sha256": "3bd92833652dbbd81952b6e5b85ee709a895070a36a4083332b6471875958a63"
+        },
+        {
+          "kind": "read",
+          "path": "read.md",
+          "media_type": "text/markdown",
+          "bytes": 72777,
+          "sha256": "15db76d9175c1ded8ad21b5464990820ab6a32cc5b131ffcee6c5fe49cecd9e5"
+        },
+        {
+          "kind": "source_audio",
+          "path": "audio.m4s",
+          "media_type": "application/octet-stream",
+          "bytes": 117911207,
+          "sha256": "6f486e13fa4f4e425f286e84ddacfca9d60e1005ef2801e883ddcde5bcfee26d"
+        },
+        {
+          "kind": "source_video",
+          "path": "video.m4s",
+          "media_type": "application/octet-stream",
+          "bytes": 285172880,
+          "sha256": "6c0c8055c060f5d32e7c944dd8c0f3aa4a5111292ecd6b1027bf08cb6de514d9"
+        }
+      ],
+      "outcomes": [
+        {
+          "product": "transcript",
+          "status": "ready",
+          "artifacts": [
+            "transcript.json",
+            "chunks.json"
+          ],
+          "omissions": []
+        }
+      ],
+      "effects": [
+        {
+          "operation": "observe",
+          "status": "succeeded",
+          "attempts": 1,
+          "route": null,
+          "provider": null,
+          "model": null,
+          "uploaded": false,
+          "cost_may_apply": false,
+          "diagnostic": null
+        },
+        {
+          "operation": "media",
+          "status": "cache_hit",
+          "attempts": 0,
+          "route": "30280",
+          "provider": null,
+          "model": null,
+          "uploaded": false,
+          "cost_may_apply": false,
+          "diagnostic": null
+        },
+        {
+          "operation": "source.detect",
+          "status": "succeeded",
+          "attempts": 0,
+          "route": null,
+          "provider": null,
+          "model": null,
+          "uploaded": false,
+          "cost_may_apply": false,
+          "diagnostic": "bilibili"
+        },
+        {
+          "operation": "metadata.extract",
+          "status": "succeeded",
+          "attempts": 0,
+          "route": null,
+          "provider": null,
+          "model": null,
+          "uploaded": false,
+          "cost_may_apply": false,
+          "diagnostic": null
+        },
+        {
+          "operation": "transcript.extract",
+          "status": "warning",
+          "attempts": 0,
+          "route": null,
+          "provider": null,
+          "model": null,
+          "uploaded": false,
+          "cost_may_apply": false,
+          "diagnostic": "Bilibili source has no admitted anonymous subtitle track"
+        },
+        {
+          "operation": "source.media",
+          "status": "succeeded",
+          "attempts": 0,
+          "route": null,
+          "provider": null,
+          "model": null,
+          "uploaded": false,
+          "cost_may_apply": false,
+          "diagnostic": "source media: audio"
+        },
+        {
+          "operation": "asr",
+          "status": "local",
+          "attempts": 0,
+          "route": "local",
+          "provider": "faster-whisper",
+          "model": "small",
+          "uploaded": false,
+          "cost_may_apply": false,
+          "diagnostic": "default local ASR route available"
+        },
+        {
+          "operation": "transform.asr",
+          "status": "succeeded",
+          "attempts": 0,
+          "route": null,
+          "provider": null,
+          "model": null,
+          "uploaded": false,
+          "cost_may_apply": false,
+          "diagnostic": "faster-whisper:small"
+        },
+        {
+          "operation": "transcript.parse",
+          "status": "succeeded",
+          "attempts": 0,
+          "route": null,
+          "provider": null,
+          "model": null,
+          "uploaded": false,
+          "cost_may_apply": false,
+          "diagnostic": "json"
+        },
+        {
+          "operation": "transcript.normalize",
+          "status": "succeeded",
+          "attempts": 0,
+          "route": null,
+          "provider": null,
+          "model": null,
+          "uploaded": false,
+          "cost_may_apply": false,
+          "diagnostic": "1577 segments"
+        },
+        {
+          "operation": "chunk",
+          "status": "succeeded",
+          "attempts": 0,
+          "route": null,
+          "provider": null,
+          "model": null,
+          "uploaded": false,
+          "cost_may_apply": false,
+          "diagnostic": "5 chunks"
+        },
+        {
+          "operation": "source.asset_retention",
+          "status": "succeeded",
+          "attempts": 0,
+          "route": null,
+          "provider": null,
+          "model": null,
+          "uploaded": false,
+          "cost_may_apply": false,
+          "diagnostic": "assets/audio.m4s"
+        },
+        {
+          "operation": "observe",
+          "status": "succeeded",
+          "attempts": 1,
+          "route": null,
+          "provider": null,
+          "model": null,
+          "uploaded": false,
+          "cost_may_apply": false,
+          "diagnostic": null
+        },
+        {
+          "operation": "media",
+          "status": "succeeded",
+          "attempts": 1,
+          "route": "32",
+          "provider": null,
+          "model": null,
+          "uploaded": false,
+          "cost_may_apply": false,
+          "diagnostic": "anonymous DASH visual representation 32"
+        },
+        {
+          "operation": "source.detect",
+          "status": "succeeded",
+          "attempts": 0,
+          "route": null,
+          "provider": null,
+          "model": null,
+          "uploaded": false,
+          "cost_may_apply": false,
+          "diagnostic": "bilibili"
+        },
+        {
+          "operation": "metadata.extract",
+          "status": "succeeded",
+          "attempts": 0,
+          "route": null,
+          "provider": null,
+          "model": null,
+          "uploaded": false,
+          "cost_may_apply": false,
+          "diagnostic": null
+        },
+        {
+          "operation": "source.asset_retention",
+          "status": "succeeded",
+          "attempts": 0,
+          "route": null,
+          "provider": null,
+          "model": null,
+          "uploaded": false,
+          "cost_may_apply": false,
+          "diagnostic": "video.m4s"
+        }
+      ],
+      "asset_scope": "complete",
+      "source_capabilities": [
+        "audio",
+        "video"
+      ]
+    }
+  ]
+}
